@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+/* =========================================================
+   Token desain Sistem Spare Part MCC (PT Philips Industries Batam)
+   Semua warna, huruf, dan gerak diambil dari sini agar seragam.
+   ========================================================= */
+:root {
+  /* Warna inti */
+  --mcc-blue: #0b5ed7;         /* Biru Philips (perkiraan, cocokkan dengan logo resmi klien) */
+  --mcc-blue-hover: #094db1;
+  --mcc-blue-soft: #e7f0fc;    /* Latar lembut untuk item aktif / terpilih */
+  --mcc-navy: #13294b;         /* Judul, sidebar */
+  --mcc-bg: #f3f5f8;           /* Latar halaman */
+  --mcc-surface: #ffffff;      /* Area konten, tabel, form */
+  --mcc-border: #d9dee5;       /* Garis tabel dan input */
+  --mcc-text: #13294b;
+  --mcc-text-muted: #5b6b80;
+
+  /* Warna status */
+  --mcc-success: #1e7e34;
+  --mcc-success-soft: #e6f4ea;
+   --mcc-warning: #8a5a00;
+  --mcc-warning-soft: #fff4db;
+  --mcc-danger: #c62828;
+  --mcc-danger-soft: #fdecec;
+
+  /* Bentuk */
+  --mcc-radius-sm: 4px;
+  --mcc-radius: 8px;
+  --mcc-shadow: 0 1px 2px rgba(19, 41, 75, 0.06), 0 1px 3px rgba(19, 41, 75, 0.08);
+
+  /* Gerak: pendek dan halus */
+  --mcc-ease: cubic-bezier(0.2, 0, 0, 1);
+  --mcc-dur-fast: 150ms;
+  --mcc-dur: 220ms;
+
+  /* Huruf */
+  --mcc-font: "Source Sans 3 Variable", "Segoe UI", system-ui, sans-serif;
+
+  /* Dipakai oleh Tailwind */
+  --background: var(--mcc-bg);
+  --foreground: var(--mcc-text);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--mcc-font);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--mcc-font);
+}
+
+/* Tombol dan kolom input ikut memakai font halaman */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+/* Penanda fokus yang jelas saat memakai keyboard / RFID reader */
+:focus-visible {
+  outline: 2px solid var(--mcc-blue);
+  outline-offset: 2px;
+}
+
+/* Animasi masuk yang halus: memudar + bergeser 4px. Pakai class "mcc-fade-in". */
+@keyframes mcc-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: none; }
+}
+.mcc-fade-in {
+  animation: mcc-fade-in var(--mcc-dur) var(--mcc-ease) both;
+}
+
+/* Hormati pengaturan Windows "kurangi animasi" */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

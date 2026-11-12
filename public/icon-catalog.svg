@@ -1,0 +1,12 @@
+<svg id="Catalog--Streamline-Carbon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" height="16" width="16">
+  <desc>
+    Catalog Streamline Icon: https://streamlinehq.com
+  </desc>
+  <defs></defs>
+  <title>catalog</title>
+  <path d="M13 1H4a1 1 0 0 0 -1 1v2H2v1h1v2.5H2v1h1v2.5H2v1h1v2a1 1 0 0 0 1 1h9a1 1 0 0 0 1 -1V2a1 1 0 0 0 -1 -1Zm0 13H4v-2h1v-1H4v-2.5h1v-1H4v-2.5h1V4H4V2h9Z" fill="#ffffff" stroke-width="0.5"></path>
+  <path d="M7 4h4v1h-4Z" fill="#ffffff" stroke-width="0.5"></path>
+  <path d="M7 7.5h4v1h-4Z" fill="#ffffff" stroke-width="0.5"></path>
+  <path d="M7 11h4v1h-4Z" fill="#ffffff" stroke-width="0.5"></path>
+  <path id="_Transparent_Rectangle_" d="M0 0h16v16H0Z" fill="none" stroke-width="0.5"></path>
+</svg>
