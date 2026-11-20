@@ -28,7 +28,7 @@
 
 - [ ] Backup current codebase (`git status` / branch snapshot)
 - [ ] Create a separate working branch for the database migration
-- [ ] Prepare `lib/db-config.ts` (planned central config file, not yet deployed)
+- [ ] Configure SQL Server access through `backend/.env` and the Node.js `mssql` driver
 - [ ] List all 32 affected files before making changes
 - [ ] Prepare migration script for server replacement and env-standardization
 - [ ] Confirm no live production deployment is running during migration

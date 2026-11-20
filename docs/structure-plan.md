@@ -1,74 +1,57 @@
-# Rencana Struktur Proyek yang Lebih Rapi
+# Struktur Proyek MCC
 
-## Pembagian utama
+## Struktur repository
 
 ```text
-philips-mcc-system/
+/
   frontend/
-    README.md
     app/
-    components/
-    hooks/
-    lib/
-    styles/
-    public/
-
+      admin/page.tsx
+      admin/teknisi/page.tsx
+      login/page.tsx
+      rfid/page.tsx
+      components/
+        admin/AdminDashboard.tsx
+        auth/LoginForm.tsx
+    public/                   # Aset website
+    package.json
+    next.config.ts
+    tsconfig.json
   backend/
-    README.md
+    app/api/                  # Seluruh route API
+      _lib/                   # Helper API
+    package.json
+    next.config.ts
+    tsconfig.json
     src/
-    config/
-    database/
-    services/
-    utils/
-
+      config/db.js            # Koneksi SQL Server
+      services/               # Logika bisnis API
+    tools/notifikasi-pc/      # Utilitas notifikasi Windows yang masih dipakai
   docs/
-    architecture.md
 ```
 
-## Kriteria pemisahan
+Frontend dan backend berjalan sebagai aplikasi Next.js/Node.js terpisah. Frontend hanya menangani halaman dan aset website; semua endpoint API berada di backend. Akses `/` diarahkan ke `/admin`; sesi admin yang tidak valid diarahkan ke `/login`.
 
-### Frontend
-- semuafiles UI dan tampilan
-- halaman `app/page.tsx`, `app/admin/...`, `app/rfid/...`
-- state, modal, form, UI components
-- fetch ke endpoint backend seperti `/api/parts`, `/api/teknisi`
+## Routing API
 
-### Backend
-- semua route `app/api/*/route.ts`
-- koneksi `mssql` dan konfigurasi database
-- service layer untuk operasi CRUD, upload, email, laporan
-- logika autentikasi, validasi, business rules
+- Route handler yang semula berada di `frontend/app/api` telah dipindahkan ke `backend/app/api`.
+- Frontend meneruskan seluruh path `/api/*` ke backend melalui rewrite.
+- `API_BACKEND_URL` dapat digunakan untuk menentukan alamat backend selain `http://127.0.0.1:8000`.
 
-## Status saat ini
+## Menjalankan aplikasi
 
-Project saat ini masih dalam satu repository dengan pola Next.js full stack. Ini berarti UI dan API bersatu di root. Untuk menjaga stabilitas, lebih baik:
-1. pindah file UI lama ke `frontend/` secara bertahap
-2. pindah semua API dan SQL logic ke `backend/`
-3. sesuaikan import path dan base URL setelah pemindahan selesai
+Jalankan dari dua terminal:
 
-## Saran implementasi
-
-- mulai dari frontend: pisahkan halaman dan komponen
-- lalu backend: ambil semua API route ke folder backend/src/routes
-- gunakan `axios`/fetch client di frontend untuk memanggil backend
-- simpan variabel environment di `.env.local` atau `backend/.env`
-- hindari menumpuk query SQL di halaman frontend
-
-## Target struktur ideal setelah refactor
-
-```text
-root/
-  frontend/
-    app/
-    components/
-    hooks/
-    lib/
-  backend/
-    src/
-      routes/
-      services/
-      database/
-  package.json
-  docker-compose.yml (opsional)
-  .env.example
+```powershell
+Set-Location frontend
+npm ci
+npm run dev
 ```
+
+```powershell
+Set-Location backend
+npm ci
+npm run dev
+```
+
+Atur konfigurasi SQL Server di `backend\.env` berdasarkan `backend\.env.example`.

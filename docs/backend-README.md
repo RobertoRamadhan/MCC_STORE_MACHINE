@@ -1,43 +1,29 @@
-# Backend
+# Backend API Node.js
 
-Folder ini berisi semua logika server-side dan API.
+Backend adalah aplikasi Next.js terpisah yang menjalankan seluruh route API. Koneksi SQL Server menggunakan `mssql`.
 
-Struktur final:
+## Persyaratan
 
-```text
-backend/
-  src/
-    api/
-      routes/
-      controllers/
-    auth/
-      index.ts
-    config/
-      db.ts
-    database/
-      sql.ts
-    middleware/
-      authMiddleware.ts
-    routes/
-      index.ts
-      parts.ts
-    services/
-      partService.ts
-      emailService.ts
-      uploadService.ts
-    utils/
-      response.ts
-      validation.ts
+- Node.js versi 20.9 atau lebih baru
+- SQL Server yang dapat diakses dari host backend
+
+## Konfigurasi dan menjalankan
+
+```powershell
+Set-Location backend
+npm ci
+npm run dev
 ```
 
-Tanggung jawab:
-- endpoint API dan route handler
-- koneksi SQL Server
-- CRUD part, teknisi, request, laporan
-- auth dan role permission
-- validasi, upload, email, business logic
+API berjalan pada `http://127.0.0.1:8000`. Atur `DB_SERVER`, `DB_PORT`, `DB_NAME`, `DB_USER`, dan `DB_PASSWORD` di `backend/.env` (lihat `.env.example`).
 
-Aturan:
-- backend hanya untuk server-side logic
-- frontend tidak boleh menyentuh database secara langsung
-- semua API harus lewat route dan service layer yang jelas
+Frontend meneruskan `/api/*` ke `http://127.0.0.1:8000` secara default. Untuk server berbeda, tambahkan `API_BACKEND_URL` ke `frontend/.env.local`, lalu restart frontend.
+
+## Struktur
+
+- `app/api/`: route handler dan helper endpoint.
+- `src/config/db.js`: konfigurasi dan koneksi SQL Server.
+- `src/services/`: service yang dipakai handler API.
+- `tools/notifikasi-pc/`: utilitas notifikasi Windows.
+
+Jangan simpan kredensial database di source control. Gunakan `backend/.env` lokal dan batasi akses file tersebut.

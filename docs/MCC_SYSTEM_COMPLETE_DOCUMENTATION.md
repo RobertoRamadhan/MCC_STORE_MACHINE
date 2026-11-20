@@ -50,24 +50,28 @@ Aplikasi ini digunakan dalam arsitektur jaringan lokal (LAN) dengan:
 
 ### Frontend / application
 
-- app/
+- frontend/app/
   - admin/
   - api/
   - rfid/
   - page.tsx
+- frontend/public/
 
 ### Backend / service routes
 
+- backend/app/api/
+  - route handlers
+  - _lib/
 - backend/src/
-  - routes/
   - services/
   - config/
-  - database/
 
 ### Key implementation notes
 
-- Routing menggunakan Next.js App Router
-- `app/api/` berisi endpoint API untuk:
+- Routing website menggunakan Next.js App Router di `frontend/app/`
+- Seluruh route API berada di `backend/app/api/`
+- Frontend meneruskan seluruh `/api/*` ke backend Node.js
+- `backend/app/api/` menyediakan endpoint untuk:
   - RFID
   - teknisi
   - request
@@ -78,8 +82,9 @@ Aplikasi ini digunakan dalam arsitektur jaringan lokal (LAN) dengan:
   - partout
   - upload
   - email
-- `app/rfid/page.tsx` merupakan handler utama RFID login / scan
-- `app/admin/teknisi/page.tsx` merupakan panel admin untuk teknisi dan RFID assignment
+- `frontend/app/login/page.tsx` merupakan halaman login terpisah
+- `frontend/app/rfid/page.tsx` merupakan handler utama RFID login / scan
+- `frontend/app/admin/teknisi/page.tsx` merupakan panel admin untuk teknisi dan RFID assignment
 
 ---
 
@@ -115,14 +120,12 @@ Aplikasi tidak sepenuhnya dibangun sebagai dua environment terpisah di satu lapt
 
 ### Frontend scripts
 
-Project config menunjukkan:
+Frontend dan backend dijalankan dari folder masing-masing:
 
-- `npm run dev` → port 3000
-- `npm run dev:admin` → port 3000
-- `npm run dev:teknisi` → port 3001
-- `npm run start` → port 3000
-- `npm run start:admin` → port 3000
-- `npm run start:teknisi` → port 3001
+- `frontend`: `npm run dev` → website port 3000
+- `backend`: `npm run dev` → API port 8000
+- `frontend`: `npm run start` → website production port 3000
+- `backend`: `npm run start` → API production port 8000
 
 ### Actual deployed runtime
 
