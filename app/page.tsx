@@ -3131,7 +3131,7 @@ function KatalogMaster({ partsList, riwayatMasuk=[], onTampilanLama }:{ partsLis
   const hasilGlobal=q&&jenisId==null?partsList.filter(cocok).filter(p=>!hanyaWarning||warn(p)).slice(0,100):null;
   const jenisNama=(id:any)=>jenis.find(j=>j.id===id)?.nama;
   const tampil=(parts||[]).filter(cocok).filter(p=>!hanyaWarning||warn(p));
-  const aktif=jenisId==='none'?{nama:'Belum punya mesin'}:jenisId==='consumable'?{nama:'Consumable part'}:jenis.find(j=>j.id===jenisId);
+  const aktif=jenisId==='none'?{nama:'General part'}:jenisId==='consumable'?{nama:'Consumable part'}:jenis.find(j=>j.id===jenisId);
   const crumb=(t:string,f?:()=>void)=>f?<button type="button" className="mcc-link-btn" onClick={f}>{t}</button>:<span style={{fontWeight:700,color:'var(--mcc-text)'}}>{t}</span>;
   const Tabel=({rows,tampilMesin}:{rows:any[];tampilMesin?:boolean})=>(
     <div style={{border:'1px solid var(--mcc-border)',borderRadius:'6px',maxHeight:'620px',overflowY:'auto'}}>
@@ -3183,7 +3183,7 @@ function KatalogMaster({ partsList, riwayatMasuk=[], onTampilanLama }:{ partsLis
             <span style={{fontSize:'14px',color:'var(--mcc-text-muted)'}}>Part habis pakai yang sering diambil (semua mesin)</span>
           </button>
           <button type="button" onClick={()=>setJenisId('none')} style={{...G.card,padding:'24px',textAlign:'left',font:'inherit',cursor:'pointer',display:'flex',flexDirection:'column',gap:'6px'}}>
-            <span style={{fontSize:'20px',fontWeight:700,color:'var(--mcc-text)'}}>Belum punya mesin</span>
+            <span style={{fontSize:'20px',fontWeight:700,color:'var(--mcc-text)'}}>General part</span>
             <span style={{fontSize:'14px',color:'var(--mcc-text-muted)'}}>Part yang belum ditetapkan ke mesin di Master Data</span>
           </button>
         </div>
