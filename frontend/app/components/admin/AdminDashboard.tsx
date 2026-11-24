@@ -3949,7 +3949,7 @@ export default function AdminPage() {
       return d.success?` · Bin ${nb} → Rak ${kode}`:` (lokasi rak gagal: ${d.error||'error'})`;
     }catch{return ' (lokasi rak gagal disimpan)';}
   };
-  const [users, setUsers]           = useState<User[]>(usersData);
+  const [users, setUsers]           = useState<User[]>([]);
   const [showForm, setShowForm]     = useState(false);
   const [editUser, setEditUser]     = useState<User|null>(null);
   const [scanMode, setScanMode]     = useState(false);
